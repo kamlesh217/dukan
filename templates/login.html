@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title%}Login{% endblock%}
+{% block body%} 
+    <!-- Page Header Start -->
+    <div class="container-fluid bg-secondary mb-5">
+        <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 100px">
+            <h1 class="font-weight-semi-bold text-uppercase mb-3">LogIN</h1>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+
+    <!-- Checkout Start -->
+    <div class="container-fluid pt-5">
+        <div class="row px-xl-5">
+            <div class="col-lg-8">
+                <div class="mb-4">
+                    <h4 class="font-weight-semi-bold mb-4">Log in</h4>
+                    {% if messages %}
+                    <ul class="messages">
+                    {% for message in messages %}
+                    <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                    <form method="post" action="">
+                    {% csrf_token %}
+                        <div class="row">  
+                        <div class="col-md-6 form-group">
+                            <label>Email</label>
+                            <input class="form-control" name="email" type="email">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Password</label>
+                            <input class="form-control" type="password" name="password">
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <button type="submit" style='margin-right:5px;' class="btn btn-primary">Login</button>
+                            <a href="/user/sign_up_user"> New user</a>
+                        </div>
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Checkout End -->
+
+    {% endblock%}

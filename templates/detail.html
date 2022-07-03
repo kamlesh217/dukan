@@ -1,0 +1,353 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title%}{% endblock%}
+{% block body%} 
+    <!-- Page Header Start -->
+{% comment %}     
+    <!-- Page Header End -->
+
+
+    <!-- Shop Detail Start -->
+    <div class="container-fluid py-5">
+        <div class="row px-xl-5">
+            <div class="col-lg-5 pb-5">
+                <div id="product-carousel" class="carousel slide" data-ride="carousel" style="max-width:430px;height:auto;">
+                    <div class="carousel-inner border"  >
+                        
+
+                        <div class="carousel-item active">
+                            <img class="w-100 h-100" src="/media/{{product.image}}" alt="Image">
+                        </div>
+                        {% for item in image%}          
+                        <div class="carousel-item">
+                            <img class="w-100 h-100" src="/media/{{item.image}}"alt="Image">
+                        </div>
+                        
+{% endfor%}
+
+                    </div>
+                   
+                    <a class="carousel-control-prev" href="#product-carousel" data-slide="prev">
+                        <i class="fa fa-2x fa-angle-left text-dark"></i>
+                    </a>
+                    <a class="carousel-control-next" href="#product-carousel" data-slide="next">
+                        <i class="fa fa-2x fa-angle-right text-dark"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-7 pb-5">
+                <h1 class="font-weight-semi-bold">{{product.product_name}}</h1>
+                <a href="{% url "products:item_detail" product.id %}">visit the {{product.brand}} store</a>
+                
+
+                  <a href={% url "products:all_reviews" product.id%}>
+                    <p style="color:#808000;"> Rating: {{product.rating_count}}/5 | ({{product.review_count}})reviews </p>
+                    </a>
+                
+                <hr>    
+                <a href={% url "products:all_reviews" product.id%}>
+                  <h6 style="color:#808000;"><small> M.R.P.: <del>₹.{{product.actual_price}}</del></small> </h6>
+                  </a>        
+                <h4 class="mb-4" style="color:#DC143C;"> ₹.{{product.price}}</h4>
+                 <h5> About this item </h5>
+                 <hr>
+                <p class="mb-4">{{product.desc}}</p>
+                {% if ram_list%}
+                <div class="d-flex mb-3">
+                    <p class="text-dark font-weight-medium mb-0 mr-3">RAM:</p>
+                    <form>
+{% for ram in ram_list%}
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" class="custom-control-input" name="size">
+                            <label class="custom-control-label" >{{ram.ram}} GB</label>
+                        </div>
+{% endfor%}
+                    </form>
+                </div>
+                {% endif%}
+                {% if color%}
+
+                <div class="d-flex mb-4">
+                    <p class="text-dark font-weight-medium mb-0 mr-3">Colors:</p>
+                    <form>
+                        {% for color in color%}
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" class="custom-control-input" id="color-1" name="color">
+                            <label class="custom-control-label" for="color-1">{{color.ram}}</label>
+                        </div>
+{% endfor%}
+                       
+                    </form>
+                </div>
+                {% endif%}
+                <div class="d-flex align-items-center mb-4 pt-2">
+                  <a href={% url "cart:Add_to_cart" product.id %}>  <button class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Add To Cart</button></a>
+                   </a>
+                </div>
+            </div>
+        </div>
+        <div class="row px-xl-5">
+            <div class="col">
+                <div class="nav nav-tabs justify-content-center border-secondary mb-4">
+                    <a class="nav-item nav-link active" data-toggle="tab" href="#tab-pane-1">Description</a>
+                    <a class="nav-item nav-link" data-toggle="tab" href="#tab-pane-3">Reviews ({{review_count}})</a>
+                </div>
+                <div class="tab-content">
+
+                    <div class="tab-pane fade show active" id="tab-pane-1">
+                        <h4 class="mb-3">Product Information</h4>
+                        <p>{{product.desc}}</p>
+                       
+                            
+                                <div class ="container">
+                                    
+                                    <table class="table">
+                                        <tbody>
+
+                                    {% if os %}
+                                          <tr>
+                                            <td class="table-active" width="275px">OS<td>
+                                            <td>{{os.os}}</td>
+                                          </tr>
+                                     {% endif%}  
+                                     {% if ram %}
+                                          <tr>
+                                            <td class="table-active" width="275px">RAM<td>
+                                            <td>{{ram.ram}} GB</td>
+                                          </tr>
+                                     {% endif%}
+                                     {% if rom %}
+                                          <tr>
+                                            <td class="table-active" width="275px">ROM<td>
+                                            <td>{{rom.rom}} GB</td>
+                                          </tr>
+                                     {% endif%}
+                                     {% if  ssd %}
+                                          <tr>
+                                            <td class="table-active" width="275px">SSD<td>
+                                            <td>{{ssd.ssd}} GB</td>
+                                          </tr>
+                                     {% endif%}
+                                     {% if display_size %}
+                                          <tr>
+                                            <td class="table-active" width="275px">Display Dimensions<td>
+                                            <td>{{display_size.size}} </td>
+                                          </tr>
+                                          {% endif%}
+                                    {% if display_desc %}
+                                          <tr>
+                                            <td class="table-active" width="275px">Display<td>
+                                            <td>{{display_desc.desc}}</td>
+                                          </tr>
+                                          {% endif%}
+
+                                     
+                                    
+                                    {% if battery_desc %}
+                                          <tr>
+                                            <td class="table-active" width="275px">Batteries <td>
+                                            <td>{{battery_desc.desc}}</td>
+                                          </tr>
+                                     {% endif%}
+                                     {% if battery_power %}
+                                          <tr>
+                                            <td class="table-active" width="275px">Battery Power Rating<td>
+                                            <td>{{battery_power.power}}</td>
+                                          </tr>
+                                          {% endif%}
+                                     
+                                          <tr>
+                                            <td class="table-active" width="275px">Item model number<td>
+                                            <td>{{product.model_name}}</td>
+                                          </tr>
+                                     
+                                     {% if special %}
+                                          <tr>
+                                            <td class="table-active" width="275px">Special features<td>
+                                            <td>{{special.desc}}</td>
+                                          </tr>
+                                     {% endif%}
+                                     {% if connectivity %}
+                                          <tr>
+                                            <td class="table-active" width="275px"> Connectivity technologies<td>
+                                            <td>{{connectivity.desc}}</td>
+                                          </tr>
+                                     {% endif%}
+                                     {% if camera_desc %}
+                                          <tr>
+                                            <td class="table-active" width="275px">Camera<td>
+                                            <td>{{camera_desc.desc}}</td>
+                                          </tr>
+                                          
+                                     {% endif%}
+                                     {% if camera_front %}
+                                          <tr>
+                                            <td class="table-active" width="275px">Camera Front<td>
+                                            <td>{{camera_front.desc}}</td>
+                                          </tr>
+                                          
+                                     {% endif%}
+                                     {% if camera_rear %}
+                                          <tr>
+                                            <td class="table-active" width="275px">Camera Rear<td>
+                                            <td>{{camera_rear.desc}}</td>
+                                          </tr>
+                                          
+                                     {% endif%}
+                                     {% if box %}
+                                          <tr>
+                                            <td class="table-active" width="275px">Whats in the box<td>
+                                            <td>M dsfaffdf  dsfdsf dsf fdsf  dsfasf sfda dsark</td>
+                                          </tr>
+                                     {% endif%}
+                                     {% if weight %}
+                                          <tr>
+                                            <td class="table-active" width="275px">Item Weight<td>
+                                            <td>{{weight.weight}}</td>
+                                          </tr>
+                                     {% endif%}
+                                     {% if manufacturer %}
+                                          <tr>
+                                            <td class="table-active" width="275px">Manufacturer<td>
+                                            <td>{{manufacturer.desc}}</td>
+                                          </tr>
+                                     {% endif%}
+                                     
+                                        </tbody>
+                                      </table>
+
+                                    </div>
+                            
+
+                        
+                    </div>
+
+                    <div class="tab-pane fade" id="tab-pane-3">
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <h4 class="mb-4">Some letest reviews for "{{product.product_name}}"</h4>
+                                {% for i in review%}
+                               
+                             {% if i.name%}
+                                <h6>{{i.name}} </h6>
+                                {% else %}
+                                <h6>E-dukan Customer</h6>
+                                {% endif%}
+                                    <div class="media-body">
+                                        <h6><small> <i>{{i.date}}</i></small></h6>
+                                        <div class="text-primary mb-2">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                            <i class="far fa-star"></i>
+                                            <small ><i style="font-weight:bold; color:black;">{{i.comment}}</i></small>
+                                 </div>
+                                 <h6><small> Reviewed on {{i.date}}</small></h6>
+                                            <p>{{i.review}}</p>
+                                            <h6><small>{{i.helpfull}} people found this helpful</small></h6>
+                                            <button type="button" class="btn btn-outline-dark btn-sm">Helpful</button>
+                                            <hr>
+                                   
+                                    </div>
+                                
+                            {% endfor%}
+                            {% if review%}
+                            <a href={% url "products:all_reviews" product.id%}>See all</a>
+                            {% endif%}
+                            </div>
+
+
+
+                            <div class="col-md-6">
+                                <h4 class="mb-4">Leave a review</h4>
+                                <small>Your email address will not be published. Required fields are marked *</small>
+                                <form method="post" action="">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                    <label for="message">Your Rating *</label>
+<br>
+                                      <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="RadioOptions" id="inlineRadio1" value=1>
+                                        <label class="form-check-label" for="inlineRadio1">1</label>
+                                      </div>
+                                      <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="RadioOptions" id="inlineRadio2" value=2>
+                                        <label class="form-check-label" for="inlineRadio2">2</label>
+                                      </div>
+                                      <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="RadioOptions" id="inlineRadio3" value=3>
+                                        <label class="form-check-label" for="inlineRadio3">3 </label>
+                                      </div>
+                                      <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="RadioOptions" id="inlineRadio4" value=4>
+                                        <label class="form-check-label" for="inlineRadio4">4 </label>
+                                      </div>
+                                      <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="RadioOptions" id="inlineRadio5" value=5>
+                                        <label class="form-check-label" for="inlineRadio5">5</label>
+                                      </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="message">Your Review *</label>
+                                        <textarea name="massage" id="message" cols="30" rows="5" class="form-control"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="name">Your Name *</label>
+                                        <input name="name" type="text" class="form-control" id="name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Your Email *</label>
+                                        <input name="email" type="email" class="form-control" id="email" Required>
+                                    </div>
+                                    <div class="form-group mb-0">
+                                        <button type="submit" class="btn btn-primary px-3"> Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Shop Detail End -->
+
+
+    <!-- Products Start -->
+    <div class="container-fluid py-5">
+        <div class="text-center mb-4">
+            <h2 class="section-title px-5"><span class="px-2">You May Also Like</span></h2>
+        </div>
+        <div class="row px-xl-5">
+            <div class="col">
+                <div class="owl-carousel related-carousel">
+
+                    {% for item in list %}
+                    <div class="card product-item border-0">
+                        <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                          <a href="{% url "products:item_detail" item.id %}"  >
+                          <img class="img-fluid w-100" src="/media/{{item.image}}" alt=""></a>
+                        </div>
+                        <div class="card-body border-left border-right p-0 pt-4 pb-3">
+                          <a href="{% url "products:item_detail" item.id %}"  >
+                          <h5 class="text-truncate mb-3">{{item.product_name}}</h5></a>
+                          <a href={% url "products:all_reviews" item.id%}>
+                            <small style="color:#808000;"> Rating: {{item.rating_count}}/5 | ({{item.review_count}})reviews </small>
+                            </a>
+                            <div class="d-flex">
+                              <h5 style='color:red;'>₹.{{item.price}} <small style='color:black;'><small>  <del>₹.{{item.actual_price}}<del></small></small></h5> 
+                            </div>
+                        </div> 
+                    </div>
+                    {% endfor%}
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Products End --> {% endcomment %}
+
+{% endblock%}

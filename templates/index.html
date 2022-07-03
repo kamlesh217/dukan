@@ -1,0 +1,174 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title%}E-DUKAN{% endblock%}
+
+                {% block body%} 
+    <!-- Featured Start -->
+    <div class="container-fluid pt-5">
+        <div class="row px-xl-5 pb-3">
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                <div class="d-flex align-items-center border mb-4" style="padding: 30px;">
+                    <h1 class="fa fa-check text-primary m-0 mr-3"></h1>
+                    <h5 class="font-weight-semi-bold m-0">Quality Product</h5>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                <div class="d-flex align-items-center border mb-4" style="padding: 30px;">
+                    <h1 class="fa fa-shipping-fast text-primary m-0 mr-2"></h1>
+                    <h5 class="font-weight-semi-bold m-0">Free Shipping</h5>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                <div class="d-flex align-items-center border mb-4" style="padding: 30px;">
+                    <h1 class="fas fa-exchange-alt text-primary m-0 mr-3"></h1>
+                    <h5 class="font-weight-semi-bold m-0">14-Day Return</h5>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                <div class="d-flex align-items-center border mb-4" style="padding: 30px;">
+                    <h1 class="fa fa-phone-volume text-primary m-0 mr-3"></h1>
+                    <h5 class="font-weight-semi-bold m-0">24/7 Support</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Featured End -->
+
+
+    <!-- Categories Start -->
+    <div class="container-fluid pt-5">
+        <div class="row px-xl-5 pb-3">
+            <div class="col-lg-4 col-md-6 pb-1">
+                <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
+                    <p class="text-right">   </p>
+                    <a href='' class="cat-img position-relative overflow-hidden mb-3">
+                        <img class="img-fluid" width="300" src="{% static 'img/mobile_3.jpg'%}" alt="">
+                    </a>
+                    <h5 class="font-weight-semi-bold m-0">Mobiles & Tablets</h5>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 pb-1">
+                <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
+                    <p class="text-right">   </p>
+                    <a href='' class="cat-img position-relative overflow-hidden mb-3">
+                        <img class="img-fluid" width="300" src="{% static 'img/laptop.jpg'%}" alt="">
+                    </a>
+                    <h5 class="font-weight-semi-bold m-0">Computers & laptops</h5>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 pb-1">
+                <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
+                    <p class="text-right">   </p>
+                    <a href='' class="cat-img position-relative overflow-hidden mb-3">
+                        <img class="img-fluid" height="300" src="{% static 'img/camera.jpg'%}" alt="">
+                    </a>
+                    <h5 class="font-weight-semi-bold m-0">Cameras</h5>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 pb-1">
+                <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
+                    <p class="text-right">  </p>
+                    <a href= class="cat-img position-relative overflow-hidden mb-3">
+                        <img class="img-fluid" width="300" src="{% static 'img/tv.jpg'%}" alt="">
+                    </a>
+                    <h5 class="font-weight-semi-bold m-0">Television</h5>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 pb-1">
+                <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
+                    <p class="text-right">   </p>
+                    <a href='' class="cat-img position-relative overflow-hidden mb-3">
+                        <img class="img-fluid" width="300" src="{% static 'img/printer.jpg'%}" alt="">
+                    </a>
+                    <h5 class="font-weight-semi-bold m-0">Computer Peripherals</h5>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 pb-1">
+                <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
+                    <p class="text-right">    </p>
+                    <a href='' class="cat-img position-relative overflow-hidden mb-3">
+                        <img class="img-fluid" width="300" src="{% static 'img/headphone.jpg'%}" alt="">
+                    </a>
+                    <h5 class="font-weight-semi-bold m-0">Audio</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Categories End -->
+ 
+
+
+    <!-- Products Start -->
+    <div class="container-fluid py-5">
+        <div class="text-center mb-4">
+            <h2 class="section-title px-5"><span class="px-2">Just Arrived</span></h2>
+        </div>
+        <div class="row px-xl-5">
+            <div class="col">
+                <div class="owl-carousel related-carousel">
+
+                    {% for item in latest %}
+                    <div class="card product-item border-0" style="height:20;">
+                        <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0" >
+                            <a href="">
+                            <img class="img-fluid w-100" style="max-width: 350px;" src="/media/{{item.image}}" alt="">
+                        </a>
+                        </div>
+                        <div class="card-body border-left border-right p-0 pt-4 pb-3">
+                            <a href="">
+                            <h5>{{item.product_name}}</h5></a>
+                            <a href=''>
+                            <small style="color:#808000;"> Rating: {{item.rating_count}}/5 | ({{item.review_count}})reviews </small>
+                            </a>
+                            <div class="d-flex ">
+                         
+                                <h5 style='color:red;'>₹.{{item.price}}<small> <small style='color:black;' >  <del>₹.{{item.actual_price}}<del></small></small></h5>
+                                </div>
+                        </div> 
+                    </div>
+                    {% endfor%}
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Products End -->
+
+
+    <!-- Vendor Start -->
+    <div class="container-fluid py-5">
+        <div class="row px-xl-5">
+            <div class="col">
+                <div class="owl-carousel vendor-carousel">
+                    <div class="vendor-item border p-4">
+                        <img src="{% static 'img/vendor-1.jpg'%}" alt="">
+                    </div>
+                    <div class="vendor-item border p-4">
+                        <img src="{% static 'img/vendor-2.jpg'%}" alt="">
+                    </div>
+                    <div class="vendor-item border p-4">
+                        <img src="{% static 'img/vendor-3.jpg'%}" alt="">
+                    </div>
+                    <div class="vendor-item border p-4">
+                        <img src="{% static 'img/vendor-4.jpg'%}" alt="">
+                    </div>
+                    <div class="vendor-item border p-4">
+                        <img src="{% static 'img/vendor-5.jpg'%}" alt="">
+                    </div>
+                    <div class="vendor-item border p-4">
+                        <img src="{% static 'img/vendor-6.jpg'%}" alt="">
+                    </div>
+                    <div class="vendor-item border p-4">
+                        <img src="{% static 'img/vendor-7.jpg'%}" alt="">
+                    </div>
+                    <div class="vendor-item border p-4">
+                        <img src="{% static 'img/vendor-8.jpg'%}" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Vendor End -->
+
+    {% endblock%}
+   

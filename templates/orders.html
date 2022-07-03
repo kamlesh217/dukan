@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title%}Orders{% endblock%}
+{% block body%} 
+{% comment %} 
+    <!-- Page Header Start -->
+    <div class="container-fluid bg-secondary mb-5">
+        <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 100px">
+            <h1 class="font-weight-semi-bold text-uppercase mb-3">Your Orders </h1>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+
+    <!-- Cart Start -->
+    {%  if order_list %}
+    <div class="container-fluid pt-8">
+        <div class="row px-xl-8">
+            <div class="col-lg-10 table-responsive mb-6">
+                <table class="table table-bordered text-center mb-0">
+                    <thead class="bg-secondary text-dark">
+                        <tr>
+                            <th></th>
+                            <th>Products</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                            <th>Date</th>
+                            <th>delivery</th>
+                        </tr>
+                    </thead>
+                    <tbody class="align-middle">
+                      
+                        {% for item in order_list%}
+                        <tr>
+                            <td class="align-middle"> <img src="/media/Item_image/{{item.productID.image}}" alt="" style="width: 50px;"></td>
+                            <td class="align-middle"> <a href="{% url "products:item_detail" item.productID.id %}"> {{item.productID.product_name}} </a></td>
+                            <td class="align-middle">{{item.productID.price}}</td>
+                            <td class="align-middle">
+
+                                <div class="input-group quantity mx-auto" style="width: 100px;">
+                                    
+                                    <p type="text" class="form-control form-control-sm bg-secondary text-center">{{item.qty}}</p>
+                                    
+                                </div>
+
+                            </td>
+                            <td class="align-middle">{{item.totalPrice}}</td>
+                            <td class="align-middle"><p>{{item.order.billdate}}</p></td>
+                            {% if item.order.deliveryDate%}
+                            <td class="align-middle"><p>{{item.order.deliveryDate}}</p></td>
+                            {% else %}
+                            <td class="align-middle"><p>In Process</p></td>
+                            {% endif%}
+
+                        </tr>
+
+{% endfor%}
+
+                    </tbody>
+                </table>
+            </div>
+
+
+        </div>
+    </div>
+    <!-- Cart End -->
+    {% else %}
+<h1> No order placed yet </h1>
+{% endif%} {% endcomment %}
+
+    {% endblock%}
