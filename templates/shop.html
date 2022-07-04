@@ -6,7 +6,7 @@
     
 
 
-{% comment %} 
+
     <!-- Shop Start -->
     <div class="container-fluid pt-5">
         <div class="row px-xl-5">
@@ -128,8 +128,8 @@
 
 
                     <div class="container">
-                    {% for item in product %}
-                   <!-- <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
+                    {% for item in products %}
+                   {% comment %} <!-- <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
                         <div class="card product-item border-0 mb-4">
                             <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
                                 <a href="{% url "products:item_detail" item.id %}">
@@ -145,24 +145,24 @@
                                     </div>
                             </div>
                         </div>
-                    </div>-->
+                    </div>--> {% endcomment %}
                     <div class="card mb-4" style="max-width:850px;height:auto;">
                         <div class="row g-0">
                           <div class="col-md-3">
-                            <a href="{% url "products:item_detail" item.id %}">
+                            <a href="">
                             <img  src="/media/{{item.image}}" class="img-fluid rounded-start" alt="...">
                             </a>
                         </div>
                           <div class="col-md-8">
                             <div class="card-body">
-                                <a href="{% url "products:item_detail" item.id %}">
+                                <a href="/product/{{item.id}}">
                                     <h5 class="card-text" style='font-family: "Georgia", Times, serif; font-weight: bold;'>
                                         {{item.product_name}}</h5></a>
-                                        <a href={% url "products:all_reviews" item.id%}>
+                                        <a href=''>
                                         <small style="color:#808000;"> Rating: {{item.rating_count}}/5 | ({{item.review_count}})reviews </small>
                                         </a>
                                         <hr>
-                                        <h4 style='color:red;'>₹.{{item.price}} <small style='color:black;'><small>  <del>₹.{{item.actual_price}}<del></small></small></h4>
+                                        <h4 style='color:red;'>₹.{{item.list_price}} <small style='color:black;'><small>  <del>₹.{{item.actual_price}}<del></small></small></h4>
                                            
                              
                             </div>
@@ -181,6 +181,6 @@
 
 </div>
 </div>
-    <!-- Shop End --> {% endcomment %}
+    <!-- Shop End --> 
 
 {% endblock%}

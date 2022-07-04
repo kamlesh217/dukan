@@ -12,18 +12,25 @@ def Sign_up(request):
             lname=request.POST["lname"]
             email=request.POST["email"]
             password=request.POST["password"]
-            
-            if Custom_user.objects.filter(email=email):
+            print(fname)
+            print(Custom_user.objects.filter(email=email))
+            if Custom_user.objects.filter(email=email,id_deleted=False):
+                print(1)
                 messages.success(request, 'Email already Exists')
                 return redirect('/user/sign_up_user')
             else:
-                user=Custom_user.objects.create(email=email, first_name=fname, last_name=lname, password=password)
+                print(2)
+                user=Custom_user.objects.create(id_deleted=False,email=email, first_name=fname, last_name=lname, password=password)
+
+                print(3)
                 user.save()
+                print(4)
                 request.session['is_active']=True
                 request.session['first_name']=fname
                 request.session['is_admin']=user.is_admin
                 request.session['is_seller']=user.is_seller
                 request.session['user']=True
+                print(5)
                 return redirect('/')
         return render(request, "register.html")   
 

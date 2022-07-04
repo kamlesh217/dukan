@@ -3,7 +3,7 @@
 {% block title%}{% endblock%}
 {% block body%} 
     <!-- Page Header Start -->
-{% comment %}     
+   
     <!-- Page Header End -->
 
 
@@ -38,21 +38,21 @@
 
             <div class="col-lg-7 pb-5">
                 <h1 class="font-weight-semi-bold">{{product.product_name}}</h1>
-                <a href="{% url "products:item_detail" product.id %}">visit the {{product.brand}} store</a>
+                <a href="">visit the {{product.brand}} store</a>
                 
 
-                  <a href={% url "products:all_reviews" product.id%}>
+                  <a href=''>
                     <p style="color:#808000;"> Rating: {{product.rating_count}}/5 | ({{product.review_count}})reviews </p>
                     </a>
                 
                 <hr>    
-                <a href={% url "products:all_reviews" product.id%}>
+                <a href=''>
                   <h6 style="color:#808000;"><small> M.R.P.: <del>₹.{{product.actual_price}}</del></small> </h6>
                   </a>        
-                <h4 class="mb-4" style="color:#DC143C;"> ₹.{{product.price}}</h4>
+                <h4 class="mb-4" style="color:#DC143C;"> ₹.{{product.list_price}}</h4>
                  <h5> About this item </h5>
                  <hr>
-                <p class="mb-4">{{product.desc}}</p>
+                <p class="mb-4">{{product.product_desc}}</p>
                 {% if ram_list%}
                 <div class="d-flex mb-3">
                     <p class="text-dark font-weight-medium mb-0 mr-3">RAM:</p>
@@ -82,7 +82,7 @@
                 </div>
                 {% endif%}
                 <div class="d-flex align-items-center mb-4 pt-2">
-                  <a href={% url "cart:Add_to_cart" product.id %}>  <button class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Add To Cart</button></a>
+                  <a href=''>  <button class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Add To Cart</button></a>
                    </a>
                 </div>
             </div>
@@ -97,120 +97,14 @@
 
                     <div class="tab-pane fade show active" id="tab-pane-1">
                         <h4 class="mb-3">Product Information</h4>
-                        <p>{{product.desc}}</p>
-                       
-                            
+                        <p>{{product.product_desc}}</p>
                                 <div class ="container">
-                                    
                                     <table class="table">
                                         <tbody>
-
-                                    {% if os %}
-                                          <tr>
-                                            <td class="table-active" width="275px">OS<td>
-                                            <td>{{os.os}}</td>
-                                          </tr>
-                                     {% endif%}  
-                                     {% if ram %}
-                                          <tr>
-                                            <td class="table-active" width="275px">RAM<td>
-                                            <td>{{ram.ram}} GB</td>
-                                          </tr>
-                                     {% endif%}
-                                     {% if rom %}
-                                          <tr>
-                                            <td class="table-active" width="275px">ROM<td>
-                                            <td>{{rom.rom}} GB</td>
-                                          </tr>
-                                     {% endif%}
-                                     {% if  ssd %}
-                                          <tr>
-                                            <td class="table-active" width="275px">SSD<td>
-                                            <td>{{ssd.ssd}} GB</td>
-                                          </tr>
-                                     {% endif%}
-                                     {% if display_size %}
-                                          <tr>
-                                            <td class="table-active" width="275px">Display Dimensions<td>
-                                            <td>{{display_size.size}} </td>
-                                          </tr>
-                                          {% endif%}
-                                    {% if display_desc %}
-                                          <tr>
-                                            <td class="table-active" width="275px">Display<td>
-                                            <td>{{display_desc.desc}}</td>
-                                          </tr>
-                                          {% endif%}
-
-                                     
-                                    
-                                    {% if battery_desc %}
-                                          <tr>
-                                            <td class="table-active" width="275px">Batteries <td>
-                                            <td>{{battery_desc.desc}}</td>
-                                          </tr>
-                                     {% endif%}
-                                     {% if battery_power %}
-                                          <tr>
-                                            <td class="table-active" width="275px">Battery Power Rating<td>
-                                            <td>{{battery_power.power}}</td>
-                                          </tr>
-                                          {% endif%}
-                                     
-                                          <tr>
-                                            <td class="table-active" width="275px">Item model number<td>
-                                            <td>{{product.model_name}}</td>
-                                          </tr>
-                                     
-                                     {% if special %}
-                                          <tr>
-                                            <td class="table-active" width="275px">Special features<td>
-                                            <td>{{special.desc}}</td>
-                                          </tr>
-                                     {% endif%}
-                                     {% if connectivity %}
-                                          <tr>
-                                            <td class="table-active" width="275px"> Connectivity technologies<td>
-                                            <td>{{connectivity.desc}}</td>
-                                          </tr>
-                                     {% endif%}
-                                     {% if camera_desc %}
-                                          <tr>
-                                            <td class="table-active" width="275px">Camera<td>
-                                            <td>{{camera_desc.desc}}</td>
-                                          </tr>
-                                          
-                                     {% endif%}
-                                     {% if camera_front %}
-                                          <tr>
-                                            <td class="table-active" width="275px">Camera Front<td>
-                                            <td>{{camera_front.desc}}</td>
-                                          </tr>
-                                          
-                                     {% endif%}
-                                     {% if camera_rear %}
-                                          <tr>
-                                            <td class="table-active" width="275px">Camera Rear<td>
-                                            <td>{{camera_rear.desc}}</td>
-                                          </tr>
-                                          
-                                     {% endif%}
-                                     {% if box %}
-                                          <tr>
-                                            <td class="table-active" width="275px">Whats in the box<td>
-                                            <td>M dsfaffdf  dsfdsf dsf fdsf  dsfasf sfda dsark</td>
-                                          </tr>
-                                     {% endif%}
-                                     {% if weight %}
-                                          <tr>
-                                            <td class="table-active" width="275px">Item Weight<td>
-                                            <td>{{weight.weight}}</td>
-                                          </tr>
-                                     {% endif%}
                                      {% if manufacturer %}
                                           <tr>
                                             <td class="table-active" width="275px">Manufacturer<td>
-                                            <td>{{manufacturer.desc}}</td>
+                                            <td>{{manufacturer.product_desc}}</td>
                                           </tr>
                                      {% endif%}
                                      
@@ -218,9 +112,7 @@
                                       </table>
 
                                     </div>
-                            
-
-                        
+   
                     </div>
 
                     <div class="tab-pane fade" id="tab-pane-3">
@@ -255,7 +147,7 @@
                                 
                             {% endfor%}
                             {% if review%}
-                            <a href={% url "products:all_reviews" product.id%}>See all</a>
+                            <a href=''>See all</a>
                             {% endif%}
                             </div>
 
@@ -328,13 +220,13 @@
                     {% for item in list %}
                     <div class="card product-item border-0">
                         <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                          <a href="{% url "products:item_detail" item.id %}"  >
+                          <a href=""  >
                           <img class="img-fluid w-100" src="/media/{{item.image}}" alt=""></a>
                         </div>
                         <div class="card-body border-left border-right p-0 pt-4 pb-3">
-                          <a href="{% url "products:item_detail" item.id %}"  >
+                          <a href=""  >
                           <h5 class="text-truncate mb-3">{{item.product_name}}</h5></a>
-                          <a href={% url "products:all_reviews" item.id%}>
+                          <a href=''>
                             <small style="color:#808000;"> Rating: {{item.rating_count}}/5 | ({{item.review_count}})reviews </small>
                             </a>
                             <div class="d-flex">
@@ -348,6 +240,6 @@
             </div>
         </div>
     </div>
-    <!-- Products End --> {% endcomment %}
+    <!-- Products End -->
 
 {% endblock%}
