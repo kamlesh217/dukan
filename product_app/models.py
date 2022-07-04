@@ -1,7 +1,7 @@
 from pickletools import decimalnl_short
 from statistics import mode
 from django.db import models
-from numpy import product
+
 
 
 

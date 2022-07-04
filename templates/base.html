@@ -82,13 +82,13 @@
                 </form>
             </div>
             <div class="col-lg-3 col-6 text-right">
-                <a href="/" class="btn border">
+                <a href="/wishlist" class="btn border">
                     <i class="fas fa-heart text-primary"></i>
-                    <span class="badge">{{wishlist_item}}</span>
+                    <span id='wishliat_count' class="badge">{{wishlist_count}}</span>
                 </a>
-                <a href='/' class="btn border">
+                <a href='/cart' class="btn border">
                     <i class="fas fa-shopping-cart text-primary"></i>
-                    <span class="badge">{{cart_item}}</span>
+                    <span id='cart_count' class="badge">{{cart_count}}</span>
                 </a>
             </div>
         </div>
@@ -197,7 +197,9 @@
 
     <!-- Template Javascript -->
     <script src="{%static 'js/main.js'%}"></script>
-   
+    <script src="{%static 'js/base.js'%}"></script>
+
+    
 </body>
 
 </html>

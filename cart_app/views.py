@@ -2,7 +2,9 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from product_app.models import *
 from .models import *
+from user_app.models import Custom_user
 from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
 
 # Create your views here.
 # def Add_to_cart(request,item_id):
@@ -77,28 +79,19 @@ from django.views.decorators.csrf import csrf_exempt
 #     else:
 #         return redirect("/customer/login")
 
-# def wishlist(request):
-#     if  request.user.is_authenticated:
-#         context={
-#         'wishlist_item':len(Wishlist.objects.filter(customer_id=request.user.id)),
-#         'cart_item':len(Cart.objects.filter(customer_id=request.user.id)),
-#         'wishlist_items':Wishlist.objects.filter(customer_id=request.user.id)
-#         }
-#         return render(request, "wishlist.html",context)
-#     else:
-#         return redirect("/customer/login")
+def wishlist(request):
+    
+    return render(request, "wishlist.html")
 
-# def add_one_cart(request,item_id):
-#     if  request.user.is_authenticated:
-#         item=Product.objects.get(id=item_id)
-#         user=request.user.id
-#         qty=Cart.objects.get(customer_id=user,product=item)
-#         qty.qty+=1
-#         qty.save()
-#         return redirect("/cart")
-#     else:
-#         return redirect("/customer/login")
 
+def add_one_cart(request,item_id):
+    if request.method=='GET':
+        id=request.session['user']
+        item=Cart_table.objects.create(product_id=item_id, customer_id=id)
+        item.save()
+        cart_count=Cart_table.objects.filter(customer_id=id).count()
+        return JsonResponse({'success':True,'cart_count':cart_count})
+    
 
 # def remove_one_cart(request,item_id):
 #     if  request.user.is_authenticated:
@@ -126,20 +119,5 @@ from django.views.decorators.csrf import csrf_exempt
 #         return redirect("/customer/login")
 
 
-# def cart(request):
-#     if  request.user.is_authenticated:
-#         user=request.user.id
-#         items=Cart.objects.filter(customer_id=user)
-#         subtotal=float()
-#         for i in range(len(items)):
-#             subtotal+=items[i].product.price*items[i].qty
-#         context={
-#         'cart_item':len(Cart.objects.filter(customer_id=request.user.id)),
-#         'wishlist_item':len(Wishlist.objects.filter(customer_id=request.user.id)),
-#         'cart_items':Cart.objects.filter(customer_id=request.user.id),
-#         'subtotal':subtotal,
-#         'total':subtotal+100
-#         }
-#         return render(request, "cart.html",context)
-#     else:
-#         return redirect("/customer/login")
+def cart(request):
+    return render(request, "cart.html")
