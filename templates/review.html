@@ -6,7 +6,6 @@
     
     <!-- Page Header End -->
 
-{% comment %} 
     <!-- Shop Detail Start -->
     <div class="container-fluid py-5">
         <div class="row px-xl-5">
@@ -71,24 +70,23 @@
                             </tr>
                         </tbody>
                     </table>
-
                               <br>
-                              <a href="{% url "products:item_detail" product.id %}">Write a review</a>
+                              <a href="/product/{{product.id}}">Write a review</a>
                               
                             </div>
             
 
             <div class="col-lg-7 pb-5">
                 <h1 class="font-weight-semi-bold">{{product.product_name}}</h1>
-                <a href="{% url "products:item_detail" product.id %}">visit the {{product.brand}} store</a>
-                <a href={% url "products:all_reviews" product.id%}>
+                <a href="/product/{{product.id}}">visit the {{product.brand}} store</a>
+               
                     <p style="color:#808000;"> Rating: {{product.rating_count}}/5 | ({{product.review_count}})reviews </p>
-                    </a>
+                    
                 <hr>
-                <a href={% url "products:all_reviews" product.id%}>
-                    <h6 style="color:#808000;"><small> M.R.P.: <del>₹.{{product.actual_price}}</del></small> </h6>
+                <a href=>
+                    <h6 style="color:#808000;"><small> M.R.P.: <del>₹.{{product.list_price}}</del></small> </h6>
                     </a>        
-                  <h4 class="mb-4" style="color:#DC143C;"> ₹.{{product.price}}</h4>
+                  <h4 class="mb-4" style="color:#DC143C;"> ₹.{{product.min_price}}</h4>
                  <h5> About this item </h5>
                  <hr>
                 <p class="mb-4">{{product.desc}}</p>
@@ -121,7 +119,7 @@
                 </div>
                 {% endif%}
                 <div class="d-flex align-items-center mb-4 pt-2">
-                    <a href={% url "cart:Add_to_cart" product.id %}> 
+                    <a href=> 
                     <button class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Add To Cart</button>
                     </a>
                 </div>
@@ -166,6 +164,6 @@
         </div>
     </div>
     <!-- Shop Detail End -->
- {% endcomment %}
+ 
 
 {% endblock%}

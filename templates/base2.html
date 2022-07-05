@@ -4,12 +4,12 @@
 
 <head>
     <meta charset="utf-8">
-    <title>{% block title %} {% endblock%}</title>
+    <title>{% block title%} {% endblock%}</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
     <!-- Favicon -->
-    <link href="{% static 'img/favicon.ico'%}" rel="icon">
+    <link href="{%static 'img/favicon.ico'%}" rel="icon">
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"> 
@@ -18,10 +18,10 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css'%}" rel="stylesheet">
+    <link href="{%static 'lib/owlcarousel/assets/owl.carousel.min.css'%}" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="{% static 'css/style.css'%}" rel="stylesheet">
+    <link href="{%static 'css/style.css'%}" rel="stylesheet">
 </head>
 
 <body>
@@ -39,24 +39,22 @@
             </div>
             <div class="col-lg-6 text-center text-lg-right">
                 <div class="d-inline-flex align-items-center">
-                    <i><a href='' class="nav-item nav-link">Seller</a></i>
-                    <i><a href='/contact' class="nav-item nav-link">Contact</a></i>
+                 
+                    <i><a href={% url "core:contact" %} class="nav-item nav-link">Contact</a></i>
+                    
                     <div class="nav-item dropdown">
-                        {% if request.session.is_active %}
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown">hello,{{request.session.first_name}}</a>
+                        {% if request.user.is_authenticated %}
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown">hello, {{request.user.first_name}}</a>
                         {% else%}
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown">Account & List</a>
                         {% endif%}
                         <div class="dropdown-menu rounded-0 m-0">
-                            {% if request.session.is_active %}
-                            <a href='' class="dropdown-item">Profile</a>
-                            <a href='' class="dropdown-item">Oders</a>
-                            {% if request.session.is_seller %}
-                            <a href='/seller' class="dropdown-item">Your seller account</a>
-                            {% endif %}
-                            <a href='/user/sign_out_user' class="dropdown-item">Sign Out</a>
+                            <a href={% url "customer:profile" %} class="dropdown-item">Profile</a>
+                            <a href={% url "customer:orders" %} class="dropdown-item">Oders</a>
+                            {% if request.user.is_authenticated %}
+                            <a href={% url "customer:logout" %} class="dropdown-item">Sign Out</a>
                             {% else %}
-                            <a href='/user/sign_in_user' class="dropdown-item">Login/Register</a>
+                            <a href={% url "customer:login" %} class="dropdown-item">Login/Register</a>
                     {% endif%}
                         </div>
                     </div>
@@ -65,7 +63,7 @@
         </div>
         <div class="row align-items-center py-3 px-xl-5">
             <div class="col-lg-3 d-none d-lg-block">
-                <a href='/' class="text-decoration-none">
+                <a href={% url "core:index" %} class="text-decoration-none">
                     <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">E</span>Dukan</h1>
                 </a>
             </div>
@@ -82,13 +80,13 @@
                 </form>
             </div>
             <div class="col-lg-3 col-6 text-right">
-                <a href="/wishlist" class="btn border">
+                <a href="/cart/wishlist" class="btn border">
                     <i class="fas fa-heart text-primary"></i>
-                    <span id='wishliat_count' class="badge">{{request.session.wishlist_count}}</span>
+                    <span class="badge">{{wishlist_item}}</span>
                 </a>
-                <a href='/cart' class="btn border">
+                <a href={% url "cart:cart" %} class="btn border">
                     <i class="fas fa-shopping-cart text-primary"></i>
-                    <span id='cart_count' class="badge">{{request.session.cart_count}}</span>
+                    <span class="badge">{{cart_item}}</span>
                 </a>
             </div>
         </div>
@@ -100,21 +98,119 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page">Categories</a>
         </li>
-        {% for item in list %}
         <div class="nav-item dropdown"> 
-            <a class="nav-link dropdown-toggle" data-toggle="dropdown">{{item.group}}</a>
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown">Mobiles & Tablets</a>
             <div class="dropdown-menu rounded-0 m-0">
-                {% for value in item.cat_list %}
-                <a href="/shop/{{item.group}}/{{value.id}}/{{value.category_name}}" class="dropdown-item">{{value.category_name}}</a>
-                {% endfor %}
+                <a href='' class="dropdown-item">SmartPhones</a>
+                <a href='' class="dropdown-item">Basic Mobiles</a>
+                <a href='' class="dropdown-item">Tablets</a>
+                <a href='' class="dropdown-item">Accessories</a>
             </div>
         </div>
-         
-       {% endfor %}
+
+        <div class="nav-item dropdown"> 
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown">Computers & laptops </a>
+            <div class="dropdown-menu rounded-0 m-0">
+                <a href={% url "products:item_category" 5 %} class="dropdown-item">Laptops</a>
+                <a href={% url "products:item_category" 6 %} class="dropdown-item">Computer accessories</a>
+                <a href={% url "products:item_category" 7 %} class="dropdown-item">Networking Devices</a>
+                <a href={% url "products:item_category" 8 %} class="dropdown-item">Desktops</a>
+                <a href={% url "products:item_category" 9 %} class="dropdown-item">Storage devices</a>
+            </div>
+        </div>
+
+        <div class="nav-item dropdown"> 
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown">Cameras</a>
+            <div class="dropdown-menu rounded-0 m-0">
+                <a href={% url "products:item_category" 10 %} class="dropdown-item">Point & shoot</a>
+                <a href={% url "products:item_category" 11 %} class="dropdown-item">Camera Lenses</a>
+                <a href={% url "products:item_category" 12 %} class="dropdown-item">Camcorders</a>
+                <a href={% url "products:item_category" 13 %} class="dropdown-item">Mirrorless Cameras</a>
+                <a href={% url "products:item_category" 14 %} class="dropdown-item">Camera Accessories</a>
+
+               
+            </div>
+        </div>
+
+        <div class="nav-item dropdown"> 
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown">Television</a>
+            <div class="dropdown-menu rounded-0 m-0">
+                <a href={% url "products:item_category" 15 %} class="dropdown-item">Smart TVs</a>
+                <a href={% url "products:item_category" 16 %} class="dropdown-item">Android based TVs</a>
+                <a href={% url "products:item_category" 17 %} class="dropdown-item">Linux Smart TVs</a>
+                <a href={% url "products:item_category" 18 %} class="dropdown-item">Home theater systems</a>
+                <a href={% url "products:item_category" 19 %} class="dropdown-item">Projectors & Accessories</a>
+                <a href={% url "products:item_category" 20 %} class="dropdown-item">TV Accessories</a>
+            </div>
+        </div>
+
+        <div class="nav-item dropdown"> 
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown">Computer Peripherals</a>
+            <div class="dropdown-menu rounded-0 m-0">
+                <a href={% url "products:item_category" 21 %} class="dropdown-item">Internal HHD</a>
+                <a href={% url "products:item_category" 22 %} class="dropdown-item">Motherboard</a>
+                <a href={% url "products:item_category" 23 %} class="dropdown-item">Processors</a>
+                <a href={% url "products:item_category" 24 %} class="dropdown-item">Graphic Cards</a>
+            </div>
+        </div>
+
+        <div class="nav-item dropdown"> 
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown">Audio </a>
+            <div class="dropdown-menu rounded-0 m-0">
+                <a href={% url "products:item_category" 25 %} class="dropdown-item">Headphones</a>
+                <a href={% url "products:item_category" 26 %} class="dropdown-item">Speakers</a>
+                <a href={% url "products:item_category" 27 %} class="dropdown-item">MP3 & other media players</a>
+
+              
+            </div>
+        </div>
 
       </ul>
     </div>
+    <!-- Navbar Start 
+    <div class="container-fluid lg-5">
+        <div class="row border-top px-xl-5">
+            <div class="col-lg-9">
+                <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
+                    <a href={% url "core:index" %} class="text-decoration-none d-block d-lg-none">
+                        <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">E</span>Shopper</h1>
+                    </a>
+                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                        <div class="navbar-nav mr-auto py-0">
+                            <a href={% url "products:shop" %} class="nav-item nav-link">Shop</a>
+                            <div class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-toggle="dropdown">My Account</a>
+                                <div class="dropdown-menu rounded-0 m-0">
+                                    <a href={% url "customer:profile" %} class="dropdown-item">Profile</a>
+                                    <a href={% url "customer:orders" %} class="dropdown-item">Oders</a>
+                                    {% if request.user.is_authenitacted %}
+                                    <a href={% url "customer:logout" %} class="dropdown-item">Sign Out</a>
+                            {% endif%}
+                              
+                        </div>
+                            </div>
+                            <a href={% url "core:contact" %} class="nav-item nav-link">Contact</a>
+                        </div>
+                        <div class="navbar-nav ml-auto py-0">
+                            {% if request.user.is_authenitacted %}
+                            <a href={% url "customer:item_category" %} class="nav-item nav-link">Hello, {{request.user.name}}</a>
+                            {% else %}
+                            <a href={% url "customer:login" %} class="nav-item nav-link">Login</a>
+                            <a href={% url "customer:register" %} class="nav-item nav-link">Register</a>
+                            {% endif%}
+                        </div>
+                    </div>
+                </nav>
+                {% block pic %}
+                {% endblock%}
+            </div>
+        </div>
+    </div>
 
+     Navbar End -->
 
 
 {% block body%} {% endblock%}
@@ -124,7 +220,7 @@
     <div class="container-fluid bg-secondary text-dark mt-5 pt-5">
         <div class="row px-xl-5 pt-5">
             <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
-                <a href='' class="text-decoration-none">
+                <a href={% url "core:index" %} class="text-decoration-none">
                     <h1 class="mb-4 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border border-white px-3 mr-1">E</span>Dukan</h1>
                 </a>
                 <p>Dolore erat dolor sit lorem vero amet. Sed sit lorem magna, ipsum no sit erat lorem et magna ipsum dolore amet erat.</p>
@@ -196,18 +292,18 @@
 
 
     <!-- JavaScript Libraries -->
-    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="{% static 'lib/easing/easing.min.js'%}"></script>
-    <script src="{% static 'lib/owlcarousel/owl.carousel.min.js'%}"></script>
+    <script src="{%static 'lib/easing/easing.min.js'%}"></script>
+    <script src="{%static 'lib/owlcarousel/owl.carousel.min.js'%}"></script>
 
     <!-- Contact Javascript File -->
-    <script src="{% static 'mail/jqBootstrapValidation.min.js'%}"></script>
-    <script src="{% static 'mail/contact.js'%}"></script>
+    <script src="{%static 'mail/jqBootstrapValidation.min.js'%}"></script>
+    <script src="{%static 'mail/contact.js'%}"></script>
 
     <!-- Template Javascript -->
-    <script src="{% static 'js/main.js'%}"></script>
-    <script src="{% static 'js/base.js'%}"></script>
+    <script src="{%static 'js/main.js'%}"></script>
+   
 </body>
 
 </html>

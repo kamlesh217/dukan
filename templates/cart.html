@@ -22,18 +22,18 @@
                             <th>Products</th>
                             <th>Price</th>
                             <th>Quantity</th>
-                            <th>Total</th>
                             <th>Remove</th>
                             <th>Add to wishlist</th>
                         </tr>
                     </thead>
                     <tbody class="align-middle">        
                         {% for item in cart_items%}
-                        <tr>
+                        <tr id="cart_table_row_{{item.id}}">
                             <td class="align-middle"><img src="/media/Item_image/{{item.product.image}}" alt="" style="width: 50px;">
                                 <a href="">{{item.product.product_name}}</a></td>
-                            <td  class="align-middle">{{item.product.price}}</td>
+                            <td  class="align-middle">{{item.product.min_price}}</td>
                             <td class="align-middle">
+
                                 <div class="input-group quantity mx-auto" style="width: 100px;">
                                     <div class="input-group-btn"><a href=>
                                         <button class="btn btn-sm btn-primary btn-minus" >
@@ -47,23 +47,20 @@
                                         </button></a>
                                     </div>
                                 </div>
+
                             </td>
-                            <td class="align-middle">{{item.get_total}}</td>
                             <td class="align-middle">
                                 <a href=>
                                 <button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button>
-                                
                                 </a>
                             </td>
                             <td class="align-middle">
-                                <a href=>
+                                <button onclick="add_to_wishlist({{item.product.id}}, {{item.id}})">
                                 save for later
-                                </a>
+                                </button>
                             </td>
                         </tr>
                         {% endfor%}
-                        
-
                     </tbody>
                 </table>
             </div>
@@ -89,7 +86,7 @@
                     <div class="card-footer border-secondary bg-transparent">
                         <div class="d-flex justify-content-between mt-2">
                             <h5 class="font-weight-bold">Total</h5>
-                            <h5 class="font-weight-bold">Rs. {{total}}</h5>
+                            <h5 class="font-weight-bold">Rs. {{subtotal}}</h5>
                         </div>
                        <a href="/checkout"> <button class="btn btn-block btn-primary my-3 py-3">Proceed To Checkout</button>
                        </a>

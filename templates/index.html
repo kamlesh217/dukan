@@ -110,19 +110,19 @@
                     {% for item in latest %}
                     <div class="card product-item border-0" style="height:20;">
                         <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0" >
-                            <a href="">
-                            <img class="img-fluid w-100" style="max-width: 350px;" src="/media/{{item.image}}" alt="">
+                            <a href="/product/{{item.id}}">
+                            <img class="img-fluid w-100" style="max-width: 350px;" src="/media/{{item.display_image}}" alt="">
                         </a>
                         </div>
                         <div class="card-body border-left border-right p-0 pt-4 pb-3">
                             <a href="">
                             <h5>{{item.product_name}}</h5></a>
-                            <a href=''>
+                            <a href="/review/{{item.id}}">
                             <small style="color:#808000;"> Rating: {{item.rating_count}}/5 | ({{item.review_count}})reviews </small>
                             </a>
                             <div class="d-flex ">
                          
-                                <h5 style='color:red;'>₹.{{item.price}}<small> <small style='color:black;' >  <del>₹.{{item.actual_price}}<del></small></small></h5>
+                                <h5 style='color:red;'>₹.{{item.min_price}}<small> <small style='color:black;' >  <del>₹.{{item.list_price}}<del></small></small></h5>
                                 </div>
                         </div> 
                     </div>

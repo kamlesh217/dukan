@@ -11,14 +11,16 @@ from user_app.dec import login_is_required
 
 # Create your views here.
 def Dashboard(request):
-    return render(request, 'index.html')
+    context={'latest':Product_table.objects.all().reverse()[:8]}
+    return render(request, 'index.html',context)
 
 def contact(request):
     return render(request, "contact.html")
 
-def sell_list(request):
-    product=Product_table.objects.all()
-    return render(request, 'shop.html', {'products':product})
+def sell_list(request, group, id, category):
+    data={'products':Product_table.objects.filter(category=id),
+    'path':f"Product: {group}/ {category}"}
+    return render(request, 'shop.html', data)
 
 def detail(request, item_id):
     context={"product":Product_table.objects.get(id=item_id),

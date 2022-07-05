@@ -17,8 +17,17 @@ class Location_table(models.Model):
     desc=models.TextField(null=True)
 
 
+category_group_list=[
+    ("Mobiles & Tablets", "Mobiles & Tablets"),
+    ("Computers & laptops", "Computers & laptops"),
+    ("Cameras", "Cameras"),
+    ("Television", "Television"),
+    ("Computer Peripherals", "Computer Peripherals"),
+    ("Audio", "Audio"),
+]
+
 class Category_group(models.Model):
-    category_group_name=models.CharField( max_length=30)
+    category_group_name=models.CharField(choices=category_group_list, max_length=30)
     is_deleted=models.BooleanField(default=False)
     
     def __str__(self):

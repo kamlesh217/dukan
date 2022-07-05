@@ -25,3 +25,21 @@ function add_to_cart(id){
         }
     })
 }
+
+
+function add_to_wishlist(id, row_id){
+    $.ajax({
+        url: `/cart/add_wish/`+id+'/',
+        type: 'GET',
+        success: function (response) {
+            if(response['success']){
+                if(response['wishlist_count']){
+                $('#wishlist_count').text(response['wishlist_count'])}
+                var cartcount=$('#cart_count').text()
+                cartcount=parseInt(cartcount)-1
+                $('#cart_count').text(cartcount)
+                $("#cart_table_row_"+row_id).remove()
+            }
+        }
+    })
+}

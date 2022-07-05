@@ -1,5 +1,7 @@
 from django.http.response import HttpResponse
 from django.contrib import messages
+
+from cart_app.models import *
 from .dec import login_is_required, logout_is_required
 from user_app.models import Custom_user
 from django.shortcuts import redirect,render
@@ -23,6 +25,8 @@ def Sign_up(request):
                 request.session['is_admin']=user.is_admin
                 request.session['is_seller']=user.is_seller
                 request.session['user']=user[0].id
+                request.session['cart_count']=Cart_table.objects.filter(customer_id=id).count()
+                request.session['wishlist_count']=Wishlist_table.objects.filter(customer_id=id).count()
 
                 return redirect('/')
         return render(request, "register.html")   
