@@ -31,13 +31,11 @@ def detail(request, item_id):
         add_rating_to_product(item_id)
         review=Reviews.objects.create(review=message, rating=rating, name=name,email=email,product_id=item_id)
         review.save()
-        print(message,rating,name, email,review)
         return redirect(f'/product/{item_id}')
     return render(request, "detail.html", context)
 
 def Status(request):
     if request.method=='GET':
-        print('a')
         if request.session.get('user', False):
             id=request.session['user']
             cart_count=Cart_table.objects.filter(customer_id=id).count()

@@ -27,24 +27,21 @@
                             <th>Add to wishlist</th>
                         </tr>
                     </thead>
-                    <tbody class="align-middle">
-                        
-                     
-                        
+                    <tbody class="align-middle">        
                         {% for item in cart_items%}
                         <tr>
                             <td class="align-middle"><img src="/media/Item_image/{{item.product.image}}" alt="" style="width: 50px;">
-                                <a href="{% url "products:item_detail" item.product.id %}">{{item.product.product_name}}</a></td>
+                                <a href="">{{item.product.product_name}}</a></td>
                             <td  class="align-middle">{{item.product.price}}</td>
                             <td class="align-middle">
                                 <div class="input-group quantity mx-auto" style="width: 100px;">
-                                    <div class="input-group-btn"><a href={% url "cart:remove_one_cart" item.product.id %}>
+                                    <div class="input-group-btn"><a href=>
                                         <button class="btn btn-sm btn-primary btn-minus" >
                                         <i class="fa fa-minus"></i>
                                         </button> </a>
                                     </div>
                                     <p  class="form-control form-control-sm bg-secondary text-center">{{item.qty}}</p>
-                                    <div class="input-group-btn"> <a href={% url "cart:add_one_cart" item.product.id %}>
+                                    <div class="input-group-btn"> <a href=>
                                         <button class="btn btn-sm btn-primary btn-plus">
                                              <i class="fa fa-plus"></i>
                                         </button></a>
@@ -53,13 +50,13 @@
                             </td>
                             <td class="align-middle">{{item.get_total}}</td>
                             <td class="align-middle">
-                                <a href={% url "cart:delect_from_cart" item.product.id %}>
+                                <a href=>
                                 <button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button>
                                 
                                 </a>
                             </td>
                             <td class="align-middle">
-                                <a href={% url "cart:cart_to_wishlist" item.product.id %}>
+                                <a href=>
                                 save for later
                                 </a>
                             </td>

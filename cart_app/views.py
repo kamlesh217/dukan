@@ -1,10 +1,13 @@
+import json
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
+
 from product_app.models import *
 from .models import *
 from user_app.models import Custom_user
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
+from django.forms.models import model_to_dict
 
 # Create your views here.
 # def Add_to_cart(request,item_id):
@@ -120,4 +123,5 @@ def add_one_cart(request,item_id):
 
 
 def cart(request):
+   
     return render(request, "cart.html")
