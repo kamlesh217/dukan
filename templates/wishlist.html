@@ -30,27 +30,25 @@
                         
                         
                         
-                        {% comment %} {% for item in wishlist_items%}
-                        <tr>
-                            <td class="align-middle"><img src="/media/Item_image/{{item.product.image}}" alt="" style="width: 50px;">
-                                <a href="{% url "products:item_detail" item.product.id %}">{{item.product.product_name}}</a></td>
-                            <td  class="align-middle">{{item.product.price}}</td>
+                      {% for item in wishlist_items%}
+                        <tr id="wishlist_table_row_{{item.id}}">
+                            <td class="align-middle"><img src="/media/Item_image/{{item.product.display_image}}" alt="" style="width: 50px;">
+                                <a href="/product/{{item.product.id}}">{{item.product.product_name}}</a></td>
+                            <td  class="align-middle">{{item.product.min_price}}</td>
                            
                             <td class="align-middle">
-                                <a href={% url "cart:delect_from_wishlist" item.product.id %}>
-                                <button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button>
-                                </a>
+                                <button onclick="remove_wish({{item.id}})" class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button>
+
                             </td>
                             <td class="align-middle">
-                                <a href={% url "cart:wish_to_cart" item.product.id %}>
+                                <button style='border: none;
+                                background: transparent;
+                                cursor: pointer;' onclick="wishlist_to_cart({{item.product.id}})">
                                 Add
-                                </a>
+                                </button>
                             </td>
                         </tr>
-                        {% endfor%} {% endcomment %}
-                        
-
-
+                        {% endfor%} 
                     </tbody>
                 </table>
             </div>

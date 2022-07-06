@@ -30,7 +30,7 @@
                         {% for item in cart_items%}
                         <tr id="cart_table_row_{{item.id}}">
                             <td class="align-middle"><img src="/media/Item_image/{{item.product.image}}" alt="" style="width: 50px;">
-                                <a href="">{{item.product.product_name}}</a></td>
+                                <a href="/product/{{item.product.id}}">{{item.product.product_name}}</a></td>
                             <td  class="align-middle">{{item.product.min_price}}</td>
                             <td class="align-middle">
 
@@ -50,13 +50,15 @@
 
                             </td>
                             <td class="align-middle">
-                                <a href=>
-                                <button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button>
-                                </a>
+     
+                                <button onclick="remove_cart({{item.id}})" class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button>
+                            
                             </td>
                             <td class="align-middle">
-                                <button onclick="add_to_wishlist({{item.product.id}}, {{item.id}})">
-                                save for later
+                                <button style='border: none;
+                                background: transparent;
+                                cursor: pointer;' onclick="cart_to_wishlist({{item.product.id}}, {{item.id}})">
+                                Add
                                 </button>
                             </td>
                         </tr>

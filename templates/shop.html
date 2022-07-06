@@ -128,6 +128,7 @@
 
 
                     <div class="container">
+                        {% if products %}
                     {% for item in products %}
                     <div class="card mb-4" style="max-width:850px;height:auto;">
                         <div class="row g-0">
@@ -154,6 +155,9 @@
                       </div>
 
 {% endfor%}
+{% else %}
+<p> no item found </p>
+{% endif %}
                 </div>
 
                 </div>

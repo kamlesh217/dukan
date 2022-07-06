@@ -70,12 +70,14 @@
                 </a>
             </div>
             <div class="col-lg-6 col-6 text-left">
-                <form action="">
+                <form method='get' action="/search">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for products">
+                        <input type="text" name='search_value' class="form-control" placeholder="Search for products">
                         <div class="input-group-append">
                             <span class="input-group-text bg-transparent text-primary">
-                                <i class="fa fa-search"></i>
+                                <button style='border: none;
+                                background: transparent;
+                                cursor: pointer;' type='submit'><i  class="fa fa-search"></i></button>
                             </span>
                         </div>
                     </div>
@@ -84,7 +86,7 @@
             <div class="col-lg-3 col-6 text-right">
                 <a href="/wishlist" class="btn border">
                     <i class="fas fa-heart text-primary"></i>
-                    <span id='wishliat_count' class="badge">{{request.session.wishlist_count}}</span>
+                    <span id='wishlist_count' class="badge">{{request.session.wishlist_count}}</span>
                 </a>
                 <a href='/cart' class="btn border">
                     <i class="fas fa-shopping-cart text-primary"></i>

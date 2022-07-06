@@ -26,19 +26,67 @@ function add_to_cart(id){
     })
 }
 
-
-function add_to_wishlist(id, row_id){
+function cart_to_wishlist(id, row_id){
     $.ajax({
-        url: `/cart/add_wish/`+id+'/',
+        url: `/cart/cart_to_wish/`+id+'/',
         type: 'GET',
         success: function (response) {
             if(response['success']){
                 if(response['wishlist_count']){
-                $('#wishlist_count').text(response['wishlist_count'])}
-                var cartcount=$('#cart_count').text()
-                cartcount=parseInt(cartcount)-1
-                $('#cart_count').text(cartcount)
+                $('#wishlist_count').text(response['wishlist_count'])
+            }
+                $('#cart_count').text(response['cart_count'])
                 $("#cart_table_row_"+row_id).remove()
+            }
+        }
+    })
+}
+
+
+function remove_wish(id){
+    $.ajax({
+        url: `/wishlist/remove_wish/`+id+'/',
+        type: 'GET',
+        success: function (response) {
+            if(response['success']){
+                if(response['count']){
+                $('#wishlist_count').text(response['wishlist_count'])
+            }
+                $("#wishlist_table_row_"+id).remove()
+            }
+        }
+    })
+}
+
+
+function remove_cart(id){
+    $.ajax({
+        url: `/cart/remove_cart/`+id+'/',
+        type: 'GET',
+        success: function (response) {
+            if(response['success']){
+                if(response['count']){
+                $('#cart_count').text(response['cart_count'])
+            }
+                $("#cart_table_row_"+id).remove()
+            }
+        }
+    })
+}
+
+
+
+
+
+function wishlist_to_cart(id){
+    $.ajax({
+        url: `/wishlist/wish_to_cart/`+id+'/',
+        type: 'GET',
+        success: function (response) {
+            if(response['success']){
+                if(response['cart_count']){
+                $('#cart_count').text(response['cart_count'])
+            }
             }
         }
     })
