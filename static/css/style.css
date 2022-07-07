@@ -9582,3 +9582,38 @@ a.text-dark:hover, a.text-dark:focus {
     transform: translateY(-15px);
   }
 }
+
+
+
+#dashboard_table_filter{
+  float: right;
+  margin-bottom: 5px;
+  margin-right: 10px;
+}
+
+#dashboard_table_filter input{
+  background: transparent;
+  border-radius: 8px;
+  border: 1px solid;
+  margin-left: 5px;
+}
+
+#dashboard_table a{
+  color: #007bff;
+  text-decoration: underline;
+}
+
+.table_box{
+  border: .2px solid;
+  border-collapse: collapse;
+  padding: 8px;
+
+}
+
+.heading{
+  cursor: pointer;
+}
+
+.form_table_row{
+  min-height: 60px;
+}

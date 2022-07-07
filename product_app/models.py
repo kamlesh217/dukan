@@ -56,6 +56,7 @@ class Product_table(models.Model):
     rating_count=models.FloatField(default=0)
     brand=models.CharField( max_length=50,default='')
     tags=models.TextField(null=True,default='')
+    qty=models.IntegerField(default=0)
     def __str__(self):
         return self.product_name 
     

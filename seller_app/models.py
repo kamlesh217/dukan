@@ -8,3 +8,4 @@ class Seller_order_table(models.Model):
     order=models.ForeignKey("order_app.OrderItems", on_delete=models.CASCADE)
     is_complate=models.BooleanField()
     
+    

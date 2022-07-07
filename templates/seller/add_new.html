@@ -1,0 +1,56 @@
+{% extends 'seller/base.html' %}
+{% load static %}
+{% block title%}Login{% endblock%}
+{% block body %} 
+
+<div style='margin-top:10px; margin-left:20px;'>
+<table>
+<form action="" method="post">
+    <tr class='form_table_row'>
+        <td>Product Name</td>
+        <td><input type="text"></td>
+    </tr>
+
+    <tr class='form_table_row'>
+        <td>List Price</td>
+        <td><input type="number" ></td>
+    </tr>
+
+    <tr class='form_table_row'>
+        <td>Sell Price</td>
+        <td><input type="number"></td>
+    </tr>
+
+    <tr class='form_table_row'>
+        <td>Price Currency</td>
+        <td><input type="text"></td>
+    </tr>
+
+    <tr class='form_table_row'>
+        <td>Tags</td>
+        <td><input type="text"></td>
+    </tr>
+
+    <tr class='form_table_row'>
+        <td>Quantity</td>
+        <td><input type="number"></td>
+    </tr>
+
+    <tr class='form_table_row'>
+        <td>Display Image</td>
+        <td><input type="file"></td>
+    </tr>
+
+    <tr class='form_table_row'>
+        <td>Product Description</td>
+        <td><textarea  Rows="5" cols='10'> </textarea></td>
+    </tr>
+
+    <tr class='form_table_row'>
+        <td><button type="submit">Submit</button></td>
+        <td><button type="'reset">Reset</button></td>
+    </tr>
+</form>
+</table>
+</div>
+{% endblock%}

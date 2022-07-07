@@ -15,8 +15,7 @@ class OrderDetails(models.Model):
     orderNo=models.IntegerField()
     billdate=models.DateField(auto_now_add=True)
     deliveryDate=models.DateField(null=True)
-    
-    
+
     def __str__(self):
         return f"name: {self.name} on {self.billdate} to {self.city}"
     
@@ -30,5 +29,3 @@ class OrderItems(models.Model):
     def __str__(self):
         return self.order.name
     
-    def has_delete_permission(self, request, obj=None):
-        return False
