@@ -2,7 +2,7 @@
 {% load static %}
 {% block title%}Orders{% endblock%}
 {% block body%} 
-{% comment %} 
+
     <!-- Page Header Start -->
     <div class="container-fluid bg-secondary mb-5">
         <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 100px">
@@ -33,9 +33,9 @@
                       
                         {% for item in order_list%}
                         <tr>
-                            <td class="align-middle"> <img src="/media/Item_image/{{item.productID.image}}" alt="" style="width: 50px;"></td>
-                            <td class="align-middle"> <a href="{% url "products:item_detail" item.productID.id %}"> {{item.productID.product_name}} </a></td>
-                            <td class="align-middle">{{item.productID.price}}</td>
+                            <td class="align-middle"> <img src="/media/Item_image/{{item.productID.display_image}}" alt="" style="width: 50px;"></td>
+                            <td class="align-middle"> <a href="/product/{{item.productID.id}}"> {{item.productID.product_name}} </a></td>
+                            <td class="align-middle">{{item.productID.min_price}}</td>
                             <td class="align-middle">
 
                                 <div class="input-group quantity mx-auto" style="width: 100px;">
@@ -67,6 +67,6 @@
     <!-- Cart End -->
     {% else %}
 <h1> No order placed yet </h1>
-{% endif%} {% endcomment %}
+{% endif%} 
 
     {% endblock%}

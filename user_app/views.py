@@ -38,6 +38,7 @@ def Sign_up(request):
 @logout_is_required
 def Sign_in(request):
     try:
+
         if request.method=="POST":
             email=request.POST["email"]
             password=request.POST["password"]

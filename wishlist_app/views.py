@@ -2,11 +2,12 @@ from django.shortcuts import render,redirect
 from cart_app.models import *
 from product_app.models import *
 from django.http import JsonResponse
+from user_app.dec import *
 from wishlist_app.models import *
 from django.http import HttpResponse
 
 # Create your views here.
-
+@login_is_required
 def wishlist(request):
     context={
     'wishlist_items':Wishlist_table.objects.filter(customer_id=request.session['user'])
@@ -27,6 +28,7 @@ def wish_to_cart(request,item_id):
     else:
         return JsonResponse({'success':True})
 
+@login_is_required
 def delect_from_wishlist(request,item_id):
     user=request.session['user']
     if Wishlist_table.objects.filter(id=item_id):

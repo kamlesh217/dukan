@@ -2,7 +2,7 @@
 {% load static %}
 {% block title%}Checkout {% endblock%}
 {% block body%} 
-    {% comment %} <!-- Page Header Start -->
+ <!-- Page Header Start -->
     <div class="container-fluid bg-secondary mb-5">
         <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
             <h1 class="font-weight-semi-bold text-uppercase mb-3">Checkout</h1>
@@ -15,14 +15,13 @@
     </div>
     <!-- Page Header End -->
 
-
     <!-- Checkout Start -->
     <div class="container-fluid pt-5">
         <div class="row px-xl-5">
             <div class="col-lg-8">
                 <div class="mb-4">
                     <h4 class="font-weight-semi-bold mb-4">Billing Address</h4>
-                    <form method="post" action="">
+                    <form method="post" action="/order/checkout/">
                     <div class="row">
                             {% csrf_token %}
                         <div class="col-md-6 form-group">
@@ -68,8 +67,6 @@
                             <p>Rs. {{subtotal}}</p>
                     
                         </div>
-            
-   
                         <hr class="mt-0">
                         <div class="d-flex justify-content-between mb-3 pt-1">
                             <h6 class="font-weight-medium">Shipping</h6>
@@ -115,6 +112,6 @@
             </div>
         </div>
     </div>
-    <!-- Checkout End --> {% endcomment %}
+    <!-- Checkout End -->
 
     {% endblock%}

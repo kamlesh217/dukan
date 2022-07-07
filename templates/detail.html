@@ -81,9 +81,14 @@
                     </form>
                 </div>
                 {% endif%}
+                {% if is_deleted %}
+                <h3 style='color:red;'>Item is no longer available</h3>
+                {% else %}
                 <div class="d-flex align-items-center mb-4 pt-2">
                     <button onclick="add_to_cart({{product.id}})" class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Add To Cart</button></a>
                 </div>
+                {% endif %}
+
             </div>
         </div>
         
@@ -139,15 +144,15 @@
                                  </div>
                                  <h6><small> Reviewed on {{i.date}}</small></h6>
                                             <p>{{i.review}}</p>
-                                            <h6><small>{{i.helpfull}} people found this helpful</small></h6>
-                                            <button type="button" class="btn btn-outline-dark btn-sm">Helpful</button>
+                                            <h6><small class="helpfull_count_{{i.id}}">{{i.helpfull}} people found this helpful</small></h6>
+                                            <button onclick="helpfull({{i.id}})" type="button" class="btn btn-outline-dark btn-sm">Helpful</button>
                                             <hr>
                                    
                                     </div>
                                 
                             {% endfor%}
                             {% if review%}
-                            <a href=''>See all</a>
+                            <a href="/review/{{product.id}}">See all</a>
                             {% endif%}
                             </div>
 

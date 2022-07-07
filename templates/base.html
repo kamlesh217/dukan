@@ -39,7 +39,7 @@
             </div>
             <div class="col-lg-6 text-center text-lg-right">
                 <div class="d-inline-flex align-items-center">
-                    <i><a href='' class="nav-item nav-link">Seller</a></i>
+                    <i><a href='/seller' class="nav-item nav-link">Seller</a></i>
                     <i><a href='/contact' class="nav-item nav-link">Contact</a></i>
                     <div class="nav-item dropdown">
                         {% if request.session.is_active %}
@@ -50,7 +50,7 @@
                         <div class="dropdown-menu rounded-0 m-0">
                             {% if request.session.is_active %}
                             <a href='' class="dropdown-item">Profile</a>
-                            <a href='' class="dropdown-item">Oders</a>
+                            <a href='/order' class="dropdown-item">Oders</a>
                             {% if request.session.is_seller %}
                             <a href='/seller' class="dropdown-item">Your seller account</a>
                             {% endif %}
@@ -72,7 +72,7 @@
             <div class="col-lg-6 col-6 text-left">
                 <form method='get' action="/search">
                     <div class="input-group">
-                        <input type="text" name='search_value' class="form-control" placeholder="Search for products">
+                        <input type="text" name='search_value' required class="form-control" placeholder="Search for products">
                         <div class="input-group-append">
                             <span class="input-group-text bg-transparent text-primary">
                                 <button style='border: none;

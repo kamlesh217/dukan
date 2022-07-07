@@ -1,0 +1,109 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %} {% endblock%}</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+    <!-- Favicon -->
+    <link href="{% static 'img/favicon.ico'%}" rel="icon">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"> 
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css'%}" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{% static 'css/style.css'%}" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Topbar Start -->
+    <div class="container-fluid">
+        <div class="row bg-secondary py-2 px-xl-5">
+            <div class="col-lg-6 d-none d-lg-block">
+                <div class="d-inline-flex align-items-center">
+                    <a class="text-dark" href="">FAQs</a>
+                    <span class="text-muted px-2">|</span>
+                    <a class="text-dark" href="">Help</a>
+                    <span class="text-muted px-2">|</span>
+                    <a class="text-dark" href="">Support</a>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center text-lg-right">
+                <div class="d-inline-flex align-items-center">
+                    <i><a href='/' class="nav-item nav-link">Shop</a></i>
+                    <i><a href='/contact' class="nav-item nav-link">Contact</a></i>
+                    <div class="nav-item dropdown">
+                        {% if request.session.is_active %}
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown">hello,{{request.session.first_name}}</a>
+                        {% else%}
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown">Account & List</a>
+                        {% endif%}
+                        <div class="dropdown-menu rounded-0 m-0">
+                            {% if request.session.is_active %}
+                            <a href='' class="dropdown-item">Profile</a>
+                            <a href='/user/sign_out_user' class="dropdown-item">Sign Out</a>
+                            {% else %}
+                            <a href='/seller/sign_in_user' class="dropdown-item">Login/Register</a>
+                    {% endif%}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-center py-3 px-xl-5">
+            <div class="col-lg-3 d-none d-lg-block">
+                <a href='/seller' class="text-decoration-none">
+                    <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">E</span>Dukan<small>seller</small></h1>
+                </a>
+            </div>
+            <div class="col-lg-3 col-6 text-right">
+                <a href="/wishlist" class="btn border">
+                    <p>orders</p>
+                    <span id='placed_count' class="badge">{{request.session.placed_count}}</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Topbar End -->
+    {% if request.session.seller_is_active %}
+    <div class="container">
+        <ul class="nav nav-pills">
+
+            <li class="nav-item">
+            <a class="nav-link active" aria-current="page">Sections</a>
+            </li>
+            <div class="nav-item dropdown">
+                <a style='float: right;' class="nav-link">Product List</a> 
+                <a style='float: right;' class="nav-link">Add New</a>
+                <a style='float: right;' class="nav-link">Order List</a>
+            </div>
+        </ul>
+    </div>
+    {% endif %}
+{% block body%} {% endblock%}
+  
+    <!-- JavaScript Libraries -->
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'lib/easing/easing.min.js'%}"></script>
+    <script src="{% static 'lib/owlcarousel/owl.carousel.min.js'%}"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="{% static 'mail/jqBootstrapValidation.min.js'%}"></script>
+    <script src="{% static 'mail/contact.js'%}"></script>
+
+    <!-- Template Javascript -->
+    <script src="{% static 'js/main.js'%}"></script>
+    <script src="{% static 'js/base.js'%}"></script>
+</body>
+
+</html>

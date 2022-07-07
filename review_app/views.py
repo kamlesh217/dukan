@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from product_app.models import Product_table
-
+from django.http import JsonResponse
 from review_app.models import Reviews
 
 # Create your views here.
@@ -33,10 +33,11 @@ def rating_(id):
 
 def helpfull(request,review_id):
     review=Reviews.objects.get(id=review_id)
-    review.helpfull+=1
+    review.helpfull=review.helpfull+1
+    count=review.helpfull
     review.save()
-    product_id=Reviews.object.get(id=review_id)
-    return redirect('')
+    return JsonResponse({'success':True,'helpfull_count':count})
+   
 
 def add_rating_to_product(id):
     rev=Reviews.objects.filter(product_id=id).count()
@@ -44,7 +45,7 @@ def add_rating_to_product(id):
     for i in range(1,6):
         rat=Reviews.objects.filter(product_id=id,rating=i).count()
         a+=rat*i
-    rat=str(a/rev)[:3]
+    rat=a/rev
 
     item=Product_table.objects.get(id=id)
     item.review_count=rev
